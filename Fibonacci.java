@@ -6,7 +6,7 @@ public class Fibonacci {
 	public static void main(String[] args) {
 		int number = 10;
 		int a = 0;
-		int b = 1;
+		int b = 2;
 
 		int sum = 0;
 
