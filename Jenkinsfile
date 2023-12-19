@@ -2,24 +2,30 @@ pipeline {
     agent any
     
     tools {
-       maven "null"
-   }
-
+        maven "maven-nodo-principal"
+    }
 
     stages {
-        stage('Build') {
+        stage('Checkout') {
             steps {
-                echo 'Building..'
+                // Puedes añadir aquí cualquier paso necesario para la obtención del código fuente.
+                checkout scm
             }
         }
-        stage('Test') {
+        stage('Build and Test') {
             steps {
-                echo 'Testing..'
+                script {
+                    // Utiliza el comando Maven para construir y probar el proyecto.
+                    // Asegúrate de ajustar los parámetros según tus necesidades.
+                    def mavenHome = tool 'maven-nodo-principal'
+                    sh "${mavenHome}/bin/mvn clean install"
+                }
             }
         }
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
+                // Agrega los pasos de implementación aquí si es necesario
             }
         }
     }
